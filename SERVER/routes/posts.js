@@ -19,8 +19,27 @@ router.post("/", async (req, res) => {
 });
 
 
-// UPDATE A RESOURCE
+// UPDATE AN EXISTING FILE
 router.put("/:postId", async (req, res) => {
+  try {
+    const updatedPost = await Posts.updateOne(
+      {_id: req.params.postId }, 
+      { $set: {
+          title : req.body.title,
+          description: req.body.description
+        }
+      }
+    );
+    res.json(updatedPost);
+  } catch (error) {
+    res.json({
+      message: error,
+    });
+  }
+});
+
+// UPDATE BY PATCHING THE FILE
+router.patch("/:postId", async (req, res) => {
   try {
     const updatedPost = await Posts.updateOne(
       {_id: req.params.postId }, 
