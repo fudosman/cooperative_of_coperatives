@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const postsRoute = require('./routes/posts');
+const errorPage = require('./routes/error');
 const { port } = require('./config/config');
 const app = express();
 require('dotenv/config');
@@ -31,9 +32,13 @@ app.use(express.json()) ;
 
 // for parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true })) ;
+app.use(express.static('./public'));
 
 // ALL ROUTES  
 app.use('/posts',postsRoute) ;
+app.all('*', (req,res)=>{
+  res.status(404).send('Page not found');
+});
 
 
 
