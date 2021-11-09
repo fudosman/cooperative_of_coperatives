@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const postsRoute = require('./routes/posts');
-const errorPage = require('./routes/error');
 const { port } = require('./config/config');
 const app = express();
 require('dotenv/config');
