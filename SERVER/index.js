@@ -9,8 +9,8 @@ const notificationsRoute = require("./routes/notifications/notification");
 const poolsRoute = require("./routes/pools/pool");
 const usersRoute = require("./routes/users/user");
 const walletsRoute = require("./routes/wallets/wallet");
-const app = express();
 
+const app = express();
 dotenv.config();
 
 mongoose
@@ -19,10 +19,10 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Successfully connected to MongoDB hotelOrders!");
+    console.log("Successfully connected to coop DBase!");
   })
   .catch((error) => {
-    console.log("Unable to connect to MongoDB hotelOrders!");
+    console.log("Unable to connect to coop Dbase!");
     console.error(error);
   });
 
@@ -45,7 +45,7 @@ app.use(express.json());
 // for parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// middlewares
+// // middlewares
 app.use("/api/blog", blogRoute);
 app.use("/api/group", coopRoute);
 app.use("/api/user", usersRoute);
