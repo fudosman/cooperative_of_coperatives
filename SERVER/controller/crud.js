@@ -1,9 +1,4 @@
-const express = require("express");
-const router = express.Router();
-const Posts = require("../models/Posts");
-
-// CREATE A RESOURCE
-router.post("/", async (req, res) => {
+exports.create = async (req, res) => {
   const post = new Posts({
     title: req.body.title,
     description: req.body.description,
@@ -16,11 +11,9 @@ router.post("/", async (req, res) => {
       message: error,
     });
   }
-});
+};
 
-
-// UPDATE AN EXISTING FILE
-router.put("/:postId", async (req, res) => {
+exports.putUpdate = async (req, res) => {
   try {
     const updatedPost = await Posts.updateOne(
       {_id: req.params.postId }, 
@@ -36,10 +29,9 @@ router.put("/:postId", async (req, res) => {
       message: error,
     });
   }
-});
+};
 
-// UPDATE BY PATCHING THE FILE
-router.patch("/:postId", async (req, res) => {
+exports.patchUpdate =  async (req, res) => {
   try {
     const updatedPost = await Posts.updateOne(
       {_id: req.params.postId }, 
@@ -55,11 +47,9 @@ router.patch("/:postId", async (req, res) => {
       message: error,
     });
   }
-});
+};
 
-
-// RETURN ALL THE RESOURCE
-router.get("/", async (req, res) => {
+exports.getAll = async (req, res) => {
   try {
     const allPosts = await Posts.find();
     res.json(allPosts);
@@ -68,11 +58,10 @@ router.get("/", async (req, res) => {
       message: error,
     });
   }
-});
+};
 
 
-// RETURN A SPECIFIC POST
-router.get("/:postId", async (req, res) => {
+exports.getOne = async (req, res) => {
   try {
     const onePost = await Posts.findById(req.params.postId);
     res.json(onePost);
@@ -81,10 +70,9 @@ router.get("/:postId", async (req, res) => {
       message: error,
     });
   }
-});
+};
 
-// DELETE A POST BY ID
-router.delete("/:postId", async (req, res) => {
+exports.delete = async (req, res) => {
   try {
     const removedPost = await Posts.deleteOne({_id: req.params.postId });
     res.json(removedPost);
@@ -93,6 +81,5 @@ router.delete("/:postId", async (req, res) => {
       message: error,
     });
   }
-});
+};
 
-module.exports = router;
