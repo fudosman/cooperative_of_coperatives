@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+
 const blogRoute = require("./routes/blogs/blog");
 const coopRoute = require("./routes/coops/coop");
 const eventsRoute = require("./routes/events/event");

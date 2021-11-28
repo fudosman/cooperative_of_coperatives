@@ -1,3 +1,6 @@
+// import Posts model
+const Posts = require('../../model/crud');
+
 exports.create = async (req, res) => {
   const post = new Posts({
     title: req.body.title,
